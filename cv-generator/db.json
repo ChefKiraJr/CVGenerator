@@ -1,0 +1,45 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "json-marusong",
+      "author": "bambangde"
+    },
+    {
+      "id": 3,
+      "title": "wakwaw gimank",
+      "author": "julio"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "personalDetails": [
+    {
+      "id": 1,
+      "firstName": "Rafi",
+      "lastName": "Naufal",
+      "email": "rafinaufal34@gmail.com",
+      "phone": "081298078744",
+      "country": "Indonesia",
+      "city": "Jakarta",
+      "jobTitle": "Gamers",
+      "address": "Hastuti Townhouse",
+      "postalCode": "15419",
+      "birthPlace": "Jakarta",
+      "birthDate": "10 Juli 1998"
+    }
+  ]
+}

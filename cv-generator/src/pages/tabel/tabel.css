@@ -1,0 +1,28 @@
+.tabel__container {
+  width: 60%;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.tabel__title {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.tabel__title p {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.tabel__content {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.tabel-action {
+  cursor: pointer;
+}
