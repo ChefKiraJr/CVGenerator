@@ -40,10 +40,12 @@ const Tabel = () => {
       accessor: (str) => 'view',
       cell: (row, index) => (
         <Flex justify="space-evenly" w="200px">
-          <Text className="tabel-action" onClick={() => navigate(`/data-preview`)}>
+          <Text className="tabel-action" onClick={() => navigate(`/data-preview/${data[index].id}`)}>
             View
           </Text>
-          <Text className="tabel-action">Edit</Text>
+          <Text className="tabel-action" onClick={() => navigate(`/edit-data/${data[index].id}`)}>
+            Edit
+          </Text>
           <Text className="tabel-action" onClick={() => handleDelete(data[index].id)}>
             Delete
           </Text>

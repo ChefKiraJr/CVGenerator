@@ -1,0 +1,47 @@
+.edit-data__container {
+  width: 1000px;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.edit-data__title {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.edit-data__title p {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.edit-data__personal-details {
+  padding: 20px;
+}
+
+.section-title p {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.edit-data-section__title {
+  color: rgb(130, 139, 162);
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.edit-data__profile-summary {
+  padding: 20px;
+}
+
+.edit-data__button {
+  padding-left: 20px;
+  display: flex;
+}
+
+.submit-button {
+  margin-right: 30px;
+}

@@ -29,17 +29,58 @@
   "personalDetails": [
     {
       "id": 1,
-      "firstName": "Rafi",
-      "lastName": "Naufal",
+      "firstName": "Rafi Naufal",
+      "lastName": "Akbar",
       "email": "rafinaufal34@gmail.com",
       "phone": "081298078744",
       "country": "Indonesia",
       "city": "Jakarta",
-      "jobTitle": "Gamers",
-      "address": "Hastuti Townhouse",
+      "jobTitle": "Front End Web Developer",
+      "address": "Hastuti Townhouse, Jl. Keang Risin II No.116B RT02/01, Legoso, Pisangan, Ciputat Timur, Tangerang Selatan ",
       "postalCode": "15419",
       "birthPlace": "Jakarta",
-      "birthDate": "10 Juli 1998"
+      "birthDate": "10 Juli 1998",
+      "profileSummary": "I am an adaptive and fast learner individual, who has a high interest in expanding my experience in a learning environment. I am good in maintain relationship with people and terrific on working with a team. I am also accustomed to work on an extensive, high-pressure, and demanding task from which I acquired from my education and experiences. I am willing to learn more to develop myself to enhance my skills and abilities."
+    },
+    {
+      "jobTitle": "Data Analyst",
+      "firstName": "Faris",
+      "lastName": "Arrafi",
+      "email": "faris.arrafi@gmail.com",
+      "phone": "0815746235482",
+      "country": "Indonesia",
+      "city": "Bogor",
+      "address": "Jl. Subadra 2 No.5, RT.03/RW.15, Bantarjati, Kecamatan Bogor Utara",
+      "postalCode": "16152",
+      "birthPlace": "Bogor",
+      "birthDate": "1 Mei 1998",
+      "profileSummary": "Faris Arrafi adalah seorang yang bercita-cita menjadi kapten bajak laut armadanya sendiri. Tujuan hidupnya adalah untuk menemukan harta karun yang bernama \"One Piece\". Dengan dedikasinya yang tinggi dan skill kepemimpinan yang mumpuni, ia percaya dapat menggapai cita-citanya bersama anak buahnya.",
+      "id": 1658900393441
+    },
+    {
+      "jobTitle": "Data Analyst",
+      "firstName": "Muhammad",
+      "lastName": "Hanif",
+      "email": "hanif.mhmd@gmail.com",
+      "phone": "081267526583",
+      "country": "Indonesia",
+      "city": "Depok",
+      "address": "Jl. H. Amat I No.5, RW.3, Kukusan, Kecamatan Beji",
+      "postalCode": "16425",
+      "birthPlace": "Bandung",
+      "birthDate": "24 Februari 1998",
+      "profileSummary": "Mau kost di Kost Kota Depok Kost Putra Eksklusif Kost Unihome Kukusan Beji Depok, Depok? Dapatkan Fasilitas Kamar Kost Berupa AC. Simak infonya di sini.\n",
+      "education": [
+        {
+          "school": "Universitas Indonesia",
+          "degree": "Civil Engineer",
+          "startDate": "2016",
+          "endDate": "2020",
+          "city": "Jakarta",
+          "description": "GPA : 4.00 / 4.00"
+        }
+      ],
+      "id": 1658922927855
     }
   ]
 }
