@@ -37,6 +37,26 @@
   padding: 20px;
 }
 
+.add-data__education {
+  padding: 20px;
+}
+
+.add-data__skill {
+  padding: 20px;
+}
+
+.add-data__working-experience {
+  padding: 20px;
+}
+
+.add-data__organization-experience {
+  padding: 20px;
+}
+
+.add-data__languages {
+  padding: 20px;
+}
+
 .add-data__button {
   padding-left: 20px;
   display: flex;
@@ -44,4 +64,17 @@
 
 .submit-button {
   margin-right: 30px;
+}
+
+.add-button {
+  margin-top: 20px;
+}
+
+.accordion-title {
+  display: flex;
+  align-items: center;
+}
+
+.delete-button {
+  cursor: pointer;
 }

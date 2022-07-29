@@ -81,6 +81,83 @@
         }
       ],
       "id": 1658922927855
+    },
+    {
+      "jobTitle": "Front End Developer",
+      "firstName": "Rafi Naufal",
+      "lastName": "Akbar",
+      "email": "rafinaufal34@gmail.com",
+      "phone": "081298078744",
+      "country": "Indonesia",
+      "city": "Tangerang Selatan",
+      "address": "Hastuti Townhouse, Jl. Keang Risin II No.116B RT 02/01, Legoso, Pisangan, Ciputat Timur",
+      "postalCode": "15419",
+      "birthPlace": "Jakarta",
+      "birthDate": "10 Juli 1998",
+      "profileSummary": "I am an adaptive and fast learner individual, who has a high interest in expanding my experience in a learning environment. I am good in maintain relationship with people and terrific on working with a team. I am also accustomed to work on an extensive, high-pressure, and demanding task from which I acquired from my education and experiences. I am willing to learn more to develop myself to enhance my skills and abilities.",
+      "education": [
+        {
+          "school": "Universitas Indonesia",
+          "degree": "Mechanical Engineering",
+          "startDate": "2016",
+          "endDate": "2020",
+          "city": "Jakarta",
+          "description": "GPA : 3.58 / 4.00"
+        }
+      ],
+      "skills": [
+        {
+          "skill": "Communication",
+          "level": "Experienced"
+        },
+        {
+          "skill": "Teamwork",
+          "level": "Expert"
+        },
+        {
+          "skill": "Leadership",
+          "level": "Skillful"
+        }
+      ],
+      "workExperience": [
+        {
+          "jobTitle": "Quality Assurance Junior Specialist",
+          "employer": "PT. Hyundai Motor Manufacturing Indonesia",
+          "startDate": "2021",
+          "endDate": "2022",
+          "city": "Bekasi",
+          "description": "In charge of vehicle electrical problem and market claim."
+        }
+      ],
+      "organizationExperience": [
+        {
+          "jobTitle": "Vice Head",
+          "department": "Human Resource and Development Department",
+          "startDate": "2018",
+          "endDate": "2018",
+          "organizationName": "Ikatan Mahasiswa Mesin 2018",
+          "description": "Ikatan Mahasiswa Mesin FT UI is one of non - profit organization in Department of Mechanical Engineering at University of Indonesia. This division is responsible to provide the fresh graduate student from high school to be able to adapt in campus life, especially in the mechanical engineering department. In the other hand, we provide the last year student to prepared for their work life after graduate from University."
+        },
+        {
+          "jobTitle": "Staff",
+          "department": "Human Resource and Development Department",
+          "startDate": "2017",
+          "endDate": "2017",
+          "organizationName": "Badan Eksekutif Mahasiswa FTUI 2017",
+          "description": "Badan Eksekutif Mahasiswa FT UI is one of the non - profit organization in Faculty of Engineering, University of Indonesia. This division is responsible to provide the fresh graduate student from high school to be able to adapt in campus life, especially in the faculty of engineering. In the other hand, we provide the last year student to prepared for their work life after graduate from University."
+        }
+      ],
+      "languages": [
+        {
+          "language": "Indonesian",
+          "level": "Very Good Command"
+        },
+        {
+          "language": "English",
+          "level": "Highly Proficient"
+        }
+      ],
+      "id": 1659086668581
     }
   ]
 }
