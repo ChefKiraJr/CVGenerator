@@ -60,7 +60,20 @@ const AddData = ({ isEdit }) => {
         let postData = data;
         let unikId = new Date().getTime();
         postData.id = unikId;
-        await axios.post('http://localhost:3004/personalDetails', postData);
+        if (anak) {
+          let putData = data;
+          await axios.put(`http://localhost:3004/personalDetails/${anak}`, putData);
+        } else {
+          await axios.post('http://localhost:3004/personalDetails', postData);
+        }
+        toast({
+          title: 'Submit data success',
+          description: `You're CV has been ${anak ? 'edited!' : 'created!'}`,
+          position: 'top',
+          status: 'success',
+          duration: 2000,
+          isClosable: true,
+        });
         setTimeout(() => {
           navigate(`/`);
         }, 2000);
@@ -73,7 +86,7 @@ const AddData = ({ isEdit }) => {
         description: 'You need to complete the blank input',
         position: 'top',
         status: 'error',
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       });
     }
@@ -81,8 +94,10 @@ const AddData = ({ isEdit }) => {
   const submitValidation = () => {
     let isValid = true;
     Object.keys(data).forEach((key) => {
-      if (data[key] === '') {
-        isValid = false;
+      if (key !== 'workExperience' && key !== 'organizationExperience' && key !== 'country') {
+        if (data[key] === '' || data[key].length === 0) {
+          isValid = false;
+        }
       }
     });
     return isValid;

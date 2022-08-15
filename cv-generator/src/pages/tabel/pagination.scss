@@ -1,0 +1,30 @@
+.pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 32px !important;
+
+  .pagination {
+    list-style-type: none;
+    margin: 0;
+    padding-inline-start: 0;
+    display: flex;
+
+    .pagination__item,
+    .pagination__item-link {
+      outline: none;
+    }
+
+    .disabled {
+      display: none !important;
+    }
+
+    .active {
+      .pagination__item-link {
+        background-color: #f15c5f;
+        color: #ffffff;
+        outline: none;
+      }
+    }
+  }
+}

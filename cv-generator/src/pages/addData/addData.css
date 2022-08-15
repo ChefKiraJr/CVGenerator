@@ -23,6 +23,7 @@
 .section-title p {
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .add-data-section__title {
@@ -30,7 +31,6 @@
   font-size: 16px;
   line-height: 20px;
   margin-bottom: 10px;
-  margin-top: 20px;
 }
 
 .add-data__profile-summary {
@@ -67,14 +67,40 @@
 }
 
 .add-button {
-  margin-top: 20px;
-}
-
-.accordion-title {
-  display: flex;
-  align-items: center;
+  margin-top: 8px;
 }
 
 .delete-button {
   cursor: pointer;
+}
+
+button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion-button__text {
+  color: #464646;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.accordion-text__detail {
+  color: rgb(130, 139, 162);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.add-data__accordion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+
+.row {
+  margin-bottom: 10px;
 }

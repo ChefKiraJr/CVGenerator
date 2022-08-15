@@ -8,13 +8,13 @@ const PersonalDetails = ({ data, handleChange }) => {
       <div className="section-title">
         <p>Personal Details</p>
       </div>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">Wanted Job Title</p>
           <Input name="jobTitle" value={data.jobTitle} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
         </Col>
       </Row>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">First Name</p>
           <Input name="firstName" value={data.firstName} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
@@ -24,7 +24,7 @@ const PersonalDetails = ({ data, handleChange }) => {
           <Input name="lastName" value={data.lastName} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
         </Col>
       </Row>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">Email</p>
           <Input name="email" type="email" value={data.email} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
@@ -34,7 +34,7 @@ const PersonalDetails = ({ data, handleChange }) => {
           <Input name="phone" type="number" value={data.phone} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
         </Col>
       </Row>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">Country</p>
           <Input name="country" value={data.country} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
@@ -44,7 +44,7 @@ const PersonalDetails = ({ data, handleChange }) => {
           <Input name="city" value={data.city} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
         </Col>
       </Row>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">Address</p>
           <Input name="address" value={data.address} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
@@ -54,7 +54,7 @@ const PersonalDetails = ({ data, handleChange }) => {
           <Input name="postalCode" value={data.postalCode} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />
         </Col>
       </Row>
-      <Row>
+      <Row className="row">
         <Col lg="6">
           <p className="add-data-section__title">Place of Birth</p>
           <Input name="birthPlace" value={data.birthPlace} onChange={(event) => handleChange(event)} variant="filled" focusBorderColor="lime" />

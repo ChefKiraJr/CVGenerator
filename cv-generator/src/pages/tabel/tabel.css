@@ -26,3 +26,9 @@
 .tabel-action {
   cursor: pointer;
 }
+
+.print-layout {
+  position: absolute;
+  left: -1000px;
+  z-index: -1;
+}

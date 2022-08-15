@@ -2,24 +2,80 @@ import React, { useState } from 'react';
 import DataTable from 'react-data-table-component';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { Flex, Text, Button } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import {
+  Flex,
+  Text,
+  Button,
+  useToast,
+  Checkbox,
+  CheckboxGroup,
+} from '@chakra-ui/react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './tabel.css';
+import Pagination from './Pagination';
+import queryString from 'query-string';
+import { isEmpty } from 'lodash';
+import RightSectionDua from '../dataPreview/components/RightSectionDua';
+import Details from '../dataPreview/components/Details';
+import LeftSection from '../dataPreview/components/LeftSection';
+import ProfileSummary from '../dataPreview/components/ProfileSummary';
+import { Row, Col } from 'reactstrap';
+import '../dataPreview/dataPreview.css';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { intersection } from 'lodash';
 
 const Tabel = () => {
+  const { search } = useLocation();
   const [data, setData] = useState([]);
+  const [totalPage, setTotalPage] = useState();
+  const currentQuery = queryString.parse(search);
+  const [page, setPage] = useState(
+    isEmpty(currentQuery._page) ? 0 : parseInt(currentQuery._page) - 1
+  );
+  const navigate = useNavigate();
   const getData = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3004/personalDetails');
+      const currentQuery = queryString.parse(search);
+      currentQuery._page = parseInt(currentQuery._page) || 1;
+      const queries = queryString.stringify({ ...currentQuery, _limit: 3 });
+      const { data } = await axios.get(
+        `http://localhost:3004/personalDetails?${queries}`
+      );
       setData(data);
     } catch (err) {
       console.log(err);
     }
   };
+  const fetchTotalPage = async () => {
+    try {
+      const { data } = await axios.get('http://localhost:3004/personalDetails');
+      setTotalPage(Math.ceil(data.length / 3));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchTotalPage();
+  }, []);
   useEffect(() => {
     getData();
-  }, []);
-  const navigate = useNavigate();
+  }, [search]);
+  // useEffect(() => {
+  //   const currentQuery = queryString.parse(search);
+  //   if (currentQuery._page) {
+  //     setPage(currentQuery._page + 1);
+  //   }
+  // }, [search]);
+  const handlePageClick = (event) => {
+    setPage(event.selected);
+    const currentQuery = queryString.parse(search);
+    const queries = queryString.stringify({
+      ...currentQuery,
+      _page: event.selected + 1,
+    });
+    navigate(`?${queries}`);
+  };
   const handleDelete = async (id) => {
     try {
       console.log(id);
@@ -29,7 +85,90 @@ const Tabel = () => {
       console.log(err);
     }
   };
+  // const [selectedRows, setSelectedRows] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
+  const [isCheckedAll, setIsCheckedAll] = useState(false);
+  const handleCheck = (value) => {
+    console.log(value);
+    let obj = { ...selectedData };
+    let temp = obj[page] || [];
+    if (temp.length < value.length) {
+      temp.push(value[value.length - 1]);
+    } else {
+      temp = intersection([...temp], [...value]);
+    }
+    obj[page] = temp;
+    setSelectedData(obj);
+    setIsCheckedAll(temp.length === data.length);
+  };
+  const handleCheckAll = (e) => {
+    let obj = { ...selectedData };
+    if (e.target.checked) {
+      obj[page] = data.map((each) => each.id.toString());
+      setIsCheckedAll(true);
+    } else {
+      obj[page] = [];
+      setIsCheckedAll(false);
+    }
+    setSelectedData(obj);
+  };
+  useEffect(() => {
+    if (selectedData[page]) {
+      if (selectedData[page].length !== data.length) {
+        setIsCheckedAll(false);
+      } else {
+        setIsCheckedAll(true);
+      }
+    } else {
+      setIsCheckedAll(false);
+    }
+  }, [page]);
+  console.log(selectedData);
+  // const handleChange = ({ selectedRows }) => {
+  //   setSelectedRows(selectedRows);
+  //   console.log(selectedRows);
+  // };
+  const toast = useToast();
+  const bulkActionHandler = async (datas) => {
+    if (!isEmpty(datas)) {
+      let pdf = new jsPDF('portrait', 'px', 'A4', 'false');
+      for (let i = 0; i < datas.length; i++) {
+        let canvas = await html2canvas(
+          document.querySelector(`#dataPrint-${i}`)
+        );
+        let imgData = canvas.toDataURL('image/png');
+        if (i !== 0) {
+          pdf.addPage('portrait', 'px', 'A4', 'false');
+        }
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      }
+      pdf.save('download-cv.pdf');
+    } else {
+      toast({
+        title: 'Warning',
+        description: 'Mohon check salah satu data',
+        status: 'warning',
+        position: 'top',
+        duration: 1500,
+        isClosable: false,
+      });
+    }
+  };
   const columns = [
+    // { name: '', selector: (row) => row.id, cell: (row, index) => <Checkbox defaultChecked></Checkbox> },
+    {
+      name: (
+        <Checkbox
+          isChecked={isCheckedAll}
+          onChange={(event) => handleCheckAll(event)}
+        />
+      ),
+      cell: (row, index) => <Checkbox value={row.id.toString()} />,
+      width: '50px',
+    },
     { name: 'First Name', selector: (row) => row.firstName, sortable: true },
     { name: 'Last Name', selector: (row) => row.lastName, sortable: true },
     { name: 'Email', selector: (row) => row.email, sortable: true },
@@ -40,13 +179,22 @@ const Tabel = () => {
       accessor: (str) => 'view',
       cell: (row, index) => (
         <Flex justify="space-evenly" w="200px">
-          <Text className="tabel-action" onClick={() => navigate(`/data-preview/${data[index].id}`)}>
+          <Text
+            className="tabel-action"
+            onClick={() => navigate(`/data-preview/${data[index].id}`)}
+          >
             View
           </Text>
-          <Text className="tabel-action" onClick={() => navigate(`/edit-data/${data[index].id}`)}>
+          <Text
+            className="tabel-action"
+            onClick={() => navigate(`/edit-data/${data[index].id}`)}
+          >
             Edit
           </Text>
-          <Text className="tabel-action" onClick={() => handleDelete(data[index].id)}>
+          <Text
+            className="tabel-action"
+            onClick={() => handleDelete(data[index].id)}
+          >
             Delete
           </Text>
         </Flex>
@@ -66,9 +214,82 @@ const Tabel = () => {
           </Button>
         </div>
         <div className="tabel__content">
-          <DataTable columns={columns} data={data} pagination />
+          <CheckboxGroup
+            colorScheme="blue"
+            defaultValue={selectedData[page] ? selectedData[page] : []}
+            value={selectedData[page] ? selectedData[page] : []}
+            onChange={handleCheck}
+          >
+            <DataTable columns={columns} data={data} />
+          </CheckboxGroup>
+          <Pagination
+            page={page}
+            totalPage={totalPage}
+            handlePageClick={handlePageClick}
+          />
         </div>
       </div>
+      {/* <div className="download-button">
+        <Button onClick={() => bulkActionHandler(selectedRows)}>
+          Download as PDF
+        </Button>
+      </div> */}
+      {/* <div className="print-layout">
+        {selectedRows &&
+          selectedRows.map((value, index) => {
+            return (
+              <>
+                <div
+                  className="data-preview__container"
+                  id={`dataPrint-${index}`}
+                  key={index}
+                >
+                  <div className="data-preview__header">
+                    <p className="data-preview__name">
+                      {value.firstName} {value.lastName}
+                    </p>
+                    <p className="data-preview__job-title">{value.jobTitle}</p>
+                  </div>
+                  <div className="data-preview__content">
+                    <Row>
+                      <Col lg="3">
+                        {value.address && <Details data={value} />}
+                        {value.skills && value.skills.length > 0 && (
+                          <LeftSection data={value} title={'Skills'} />
+                        )}
+                        {value.languages && value.languages.length > 0 && (
+                          <LeftSection data={value} title={'Languages'} />
+                        )}
+                      </Col>
+                      <Col lg="9">
+                        {value.profileSummary && (
+                          <ProfileSummary data={value} />
+                        )}
+                        {value.education && value.education.length > 0 && (
+                          <RightSectionDua data={value} title={'Education'} />
+                        )}
+                        {value.workExperience &&
+                          value.workExperience.length > 0 && (
+                            <RightSectionDua
+                              data={value}
+                              title={'Working Experience'}
+                            />
+                          )}
+                        {value.organizationExperience &&
+                          value.organizationExperience.length > 0 && (
+                            <RightSectionDua
+                              data={value}
+                              title={'Organization Experience'}
+                            />
+                          )}
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </>
+            );
+          })}
+      </div> */}
     </>
   );
 };

@@ -28,23 +28,47 @@
   padding-right: 30px;
 }
 
+.data-preview__section {
+  margin-bottom: 25px;
+}
+
 .data-preview__section-title {
   font-size: 25px;
   color: rgb(26, 145, 240);
   margin-bottom: 15px;
 }
 
-.data-preview__detail-title {
-  font-size: 16px;
-  color: black;
-  margin-bottom: 5px;
-}
-
-.data-preview__detail-desc {
+.data-preview__description {
   font-size: 14px;
   color: rgb(130, 139, 162);
 }
 
 .data-preview__section-detail {
   margin-bottom: 15px;
+}
+
+.data-preview__desc-title {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 3px;
+}
+
+.data-preview__level {
+  margin-bottom: 15px;
+}
+
+.data-preview__right-section-title {
+  font-size: 20px;
+  color: black;
+  margin-bottom: 3px;
+}
+
+.data-preview__start-end-date {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.data-preview__section-content {
+  margin-bottom: 10px;
 }

@@ -4,6 +4,8 @@ import Tabel from './pages/tabel/Tabel';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddData from './pages/addData/AddData';
 import DataPreview from './pages/dataPreview/DataPreview';
+import { lazy, Suspense } from 'react';
+const Test = lazy(() => import('./pages/dataPreview/components/Test'));
 
 function App() {
   return (
@@ -17,6 +19,12 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
+    // <>
+    //   <Suspense fallback={<div>Loading....</div>}>
+    //     <Test />
+    //   </Suspense>
+    //   <div>WAKWAW GIMAANK</div>
+    // </>
   );
 }
 
