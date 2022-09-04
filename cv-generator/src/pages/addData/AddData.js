@@ -35,9 +35,10 @@ const AddData = ({ isEdit }) => {
   const { anak } = useParams();
   const fetchData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3004/personalDetails/${anak}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`
+      );
       setData(data);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -62,9 +63,15 @@ const AddData = ({ isEdit }) => {
         postData.id = unikId;
         if (anak) {
           let putData = data;
-          await axios.put(`http://localhost:3004/personalDetails/${anak}`, putData);
+          await axios.put(
+            `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`,
+            putData
+          );
         } else {
-          await axios.post('http://localhost:3004/personalDetails', postData);
+          await axios.post(
+            `${process.env.REACT_APP_FAKE_API}/personalDetails`,
+            postData
+          );
         }
         toast({
           title: 'Submit data success',
@@ -94,7 +101,11 @@ const AddData = ({ isEdit }) => {
   const submitValidation = () => {
     let isValid = true;
     Object.keys(data).forEach((key) => {
-      if (key !== 'workExperience' && key !== 'organizationExperience' && key !== 'country') {
+      if (
+        key !== 'workExperience' &&
+        key !== 'organizationExperience' &&
+        key !== 'country'
+      ) {
         if (data[key] === '' || data[key].length === 0) {
           isValid = false;
         }
@@ -170,16 +181,49 @@ const AddData = ({ isEdit }) => {
         </div>
         <PersonalDetails data={data} handleChange={handleChange} />
         <ProfileSummary data={data} handleChange={handleChange} />
-        <Education data={data} handleGlobalAdd={handleGlobalAdd} handleGlobalChange={handleGlobalChange} handleGlobalDelete={handleGlobalDelete} />
-        <Skills data={data} handleGlobalAdd={handleGlobalAdd} handleGlobalChange={handleGlobalChange} handleGlobalDelete={handleGlobalDelete} />
-        <WorkingExperience data={data} handleGlobalAdd={handleGlobalAdd} handleGlobalChange={handleGlobalChange} handleGlobalDelete={handleGlobalDelete} />
-        <OrganizationExperience data={data} handleGlobalAdd={handleGlobalAdd} handleGlobalChange={handleGlobalChange} handleGlobalDelete={handleGlobalDelete} />
-        <Languages data={data} handleGlobalAdd={handleGlobalAdd} handleGlobalChange={handleGlobalChange} handleGlobalDelete={handleGlobalDelete} />
+        <Education
+          data={data}
+          handleGlobalAdd={handleGlobalAdd}
+          handleGlobalChange={handleGlobalChange}
+          handleGlobalDelete={handleGlobalDelete}
+        />
+        <Skills
+          data={data}
+          handleGlobalAdd={handleGlobalAdd}
+          handleGlobalChange={handleGlobalChange}
+          handleGlobalDelete={handleGlobalDelete}
+        />
+        <WorkingExperience
+          data={data}
+          handleGlobalAdd={handleGlobalAdd}
+          handleGlobalChange={handleGlobalChange}
+          handleGlobalDelete={handleGlobalDelete}
+        />
+        <OrganizationExperience
+          data={data}
+          handleGlobalAdd={handleGlobalAdd}
+          handleGlobalChange={handleGlobalChange}
+          handleGlobalDelete={handleGlobalDelete}
+        />
+        <Languages
+          data={data}
+          handleGlobalAdd={handleGlobalAdd}
+          handleGlobalChange={handleGlobalChange}
+          handleGlobalDelete={handleGlobalDelete}
+        />
         <div className="add-data__button">
-          <Button onClick={handleSubmit} colorScheme="blue" className="submit-button">
+          <Button
+            onClick={handleSubmit}
+            colorScheme="blue"
+            className="submit-button"
+          >
             Submit
           </Button>
-          <Button onClick={() => navigate(`/`)} colorScheme="yellow" className="cancel-button">
+          <Button
+            onClick={() => navigate(`/`)}
+            colorScheme="yellow"
+            className="cancel-button"
+          >
             Cancel
           </Button>
         </div>

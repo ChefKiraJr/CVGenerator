@@ -28,6 +28,8 @@ import { intersection } from 'lodash';
 const Tabel = () => {
   const { search } = useLocation();
   const [data, setData] = useState([]);
+  const [fullData, setFullData] = useState([]);
+  const [printData, setPrintData] = useState([]);
   const [totalPage, setTotalPage] = useState();
   const currentQuery = queryString.parse(search);
   const [page, setPage] = useState(
@@ -38,9 +40,9 @@ const Tabel = () => {
     try {
       const currentQuery = queryString.parse(search);
       currentQuery._page = parseInt(currentQuery._page) || 1;
-      const queries = queryString.stringify({ ...currentQuery, _limit: 3 });
+      const queries = queryString.stringify({ ...currentQuery, _limit: 5 });
       const { data } = await axios.get(
-        `http://localhost:3004/personalDetails?${queries}`
+        `${process.env.REACT_APP_FAKE_API}/personalDetails?${queries}`
       );
       setData(data);
     } catch (err) {
@@ -49,8 +51,11 @@ const Tabel = () => {
   };
   const fetchTotalPage = async () => {
     try {
-      const { data } = await axios.get('http://localhost:3004/personalDetails');
-      setTotalPage(Math.ceil(data.length / 3));
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_FAKE_API}/personalDetails`
+      );
+      setFullData(data);
+      setTotalPage(Math.ceil(data.length / 5));
     } catch (err) {
       console.log(err);
     }
@@ -61,12 +66,6 @@ const Tabel = () => {
   useEffect(() => {
     getData();
   }, [search]);
-  // useEffect(() => {
-  //   const currentQuery = queryString.parse(search);
-  //   if (currentQuery._page) {
-  //     setPage(currentQuery._page + 1);
-  //   }
-  // }, [search]);
   const handlePageClick = (event) => {
     setPage(event.selected);
     const currentQuery = queryString.parse(search);
@@ -79,7 +78,9 @@ const Tabel = () => {
   const handleDelete = async (id) => {
     try {
       console.log(id);
-      await axios.delete(`http://localhost:3004/personalDetails/${id}`);
+      await axios.delete(
+        `${process.env.REACT_APP_FAKE_API}/personalDetails/${id}`
+      );
       getData();
     } catch (err) {
       console.log(err);
@@ -89,7 +90,6 @@ const Tabel = () => {
   const [selectedData, setSelectedData] = useState({});
   const [isCheckedAll, setIsCheckedAll] = useState(false);
   const handleCheck = (value) => {
-    console.log(value);
     let obj = { ...selectedData };
     let temp = obj[page] || [];
     if (temp.length < value.length) {
@@ -114,20 +114,33 @@ const Tabel = () => {
   };
   useEffect(() => {
     if (selectedData[page]) {
-      if (selectedData[page].length !== data.length) {
-        setIsCheckedAll(false);
-      } else {
-        setIsCheckedAll(true);
-      }
+      setIsCheckedAll(selectedData[page].length === data.length);
     } else {
       setIsCheckedAll(false);
     }
   }, [page]);
-  console.log(selectedData);
-  // const handleChange = ({ selectedRows }) => {
-  //   setSelectedRows(selectedRows);
-  //   console.log(selectedRows);
-  // };
+  const objToArr = () => {
+    let resArr = [];
+    const values = Object.values(selectedData);
+    for (let i = 0; i < values.length; i++) {
+      resArr.push(...values[i]);
+    }
+    return resArr;
+  };
+  // console.log(objToArr(), 'HEHO');
+  const compareData = () => {
+    const resArr = objToArr();
+    let printArr = [];
+    for (let i = 0; i < resArr.length; i++) {
+      const findData = fullData.find(({ id }) => id.toString() === resArr[i]);
+      printArr.push(findData);
+    }
+    setPrintData(printArr);
+    return printArr;
+  };
+  useEffect(() => {
+    compareData();
+  }, [selectedData]);
   const toast = useToast();
   const bulkActionHandler = async (datas) => {
     if (!isEmpty(datas)) {
@@ -158,7 +171,6 @@ const Tabel = () => {
     }
   };
   const columns = [
-    // { name: '', selector: (row) => row.id, cell: (row, index) => <Checkbox defaultChecked></Checkbox> },
     {
       name: (
         <Checkbox
@@ -229,14 +241,14 @@ const Tabel = () => {
           />
         </div>
       </div>
-      {/* <div className="download-button">
-        <Button onClick={() => bulkActionHandler(selectedRows)}>
+      <div className="download-button">
+        <Button onClick={() => bulkActionHandler(printData)}>
           Download as PDF
         </Button>
-      </div> */}
-      {/* <div className="print-layout">
-        {selectedRows &&
-          selectedRows.map((value, index) => {
+      </div>
+      <div className="print-layout">
+        {printData &&
+          printData.map((value, index) => {
             return (
               <>
                 <div
@@ -289,7 +301,7 @@ const Tabel = () => {
               </>
             );
           })}
-      </div> */}
+      </div>
     </>
   );
 };
