@@ -1,27 +1,25 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './dataPreview.css';
 import { useParams } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
-import RightSectionDua from './components/RightSectionDua';
-// import LeftSection from './components/LeftSection';
-// import Details from './components/Details';
+import RightSection from './components/RightSection';
 import ProfileSummary from './components/ProfileSummary';
+import Details from './components/Details';
+import LeftSection from './components/LeftSection';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Button } from '@chakra-ui/react';
-
-const Details = lazy(() => import('./components/Details'));
-const LeftSection = lazy(() => import('./components/LeftSection'));
 
 const DataPreview = () => {
   const [data, setData] = useState();
   const { anak } = useParams();
   const getData = async () => {
     try {
-      const { data } = await axios.get(`http://localhost:3004/personalDetails/${anak}`);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`
+      );
       setData(data);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -54,17 +52,29 @@ const DataPreview = () => {
             <div className="data-preview__content">
               <Row>
                 <Col lg="3">
-                  <Suspense fallback={<div>Loading...</div>}>
-                    {data.address && <Details data={data} />}
-                    {data.skills && data.skills.length > 0 && <LeftSection data={data} title={'Skills'} />}
-                    {data.languages && data.languages.length > 0 && <LeftSection data={data} title={'Languages'} />}
-                  </Suspense>
+                  {data.address && <Details data={data} />}
+                  {data.skills && data.skills.length > 0 && (
+                    <LeftSection data={data} title={'Skills'} />
+                  )}
+                  {data.languages && data.languages.length > 0 && (
+                    <LeftSection data={data} title={'Languages'} />
+                  )}
                 </Col>
                 <Col lg="9">
                   {data.profileSummary && <ProfileSummary data={data} />}
-                  {data.education && data.education.length > 0 && <RightSectionDua data={data} title={'Education'} />}
-                  {data.workExperience && data.workExperience.length > 0 && <RightSectionDua data={data} title={'Working Experience'} />}
-                  {data.organizationExperience && data.organizationExperience.length > 0 && <RightSectionDua data={data} title={'Organization Experience'} />}
+                  {data.education && data.education.length > 0 && (
+                    <RightSection data={data} title={'Education'} />
+                  )}
+                  {data.workExperience && data.workExperience.length > 0 && (
+                    <RightSection data={data} title={'Working Experience'} />
+                  )}
+                  {data.organizationExperience &&
+                    data.organizationExperience.length > 0 && (
+                      <RightSection
+                        data={data}
+                        title={'Organization Experience'}
+                      />
+                    )}
                 </Col>
               </Row>
             </div>

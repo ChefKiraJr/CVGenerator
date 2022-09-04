@@ -1,34 +1,48 @@
 import React, { useEffect, useState } from 'react';
 
-const RightSection = ({ data, title }) => {
+const RightSectionDua = ({ data, title }) => {
   const [value, setValue] = useState([]);
   useEffect(() => {
     if (title === 'Working Experience') {
-      setValue(data.workExperience);
+      if (data.workExperience && data.workExperience.length > 0) {
+        const result = data.workExperience.map((each) => {
+          return { ...each, title: `${each.jobTitle}, ${each.employer}` };
+        });
+        setValue(result);
+      }
     } else if (title === 'Education') {
-      setValue(data.education);
+      if (data.education && data.education.length > 0) {
+        const result = data.education.map((each) => {
+          return { ...each, title: `${each.school}, ${each.degree}` };
+        });
+        setValue(result);
+      }
+    } else if (title === 'Organization Experience') {
+      if (data.organizationExperience && data.organizationExperience.length > 0) {
+        const result = data.organizationExperience.map((each) => {
+          return { ...each, title: `${each.jobTitle} of ${each.department} ${each.organizationName}` };
+        });
+        setValue(result);
+      }
     }
-  }, [title]);
+  }, [title, data]);
   return (
     <div className="data-preview__section">
       <p className="data-preview__section-title">{title}</p>
       {value.length > 0 &&
-        value.map((each, index) => {
+        value.map((each) => {
           return (
-            <>
-              <p className="data-preview__detail-desc">
-                {title === 'Education' && `${each.school}, ${each.degree}`}
-                {title === 'Working Experience' && `${each.jobTitle}, ${each.employer}`}
-              </p>
-              <p className="data-preview__detail-desc">
+            <div className="data-preview__section-content">
+              <p className="data-preview__right-section-title">{each.title}</p>
+              <p className="data-preview__start-end-date">
                 {each.startDate} - {each.endDate}
               </p>
-              <p className="data-preview__detail-desc">{each.description}</p>
-            </>
+              <p className="data-preview__description">{each.description}</p>
+            </div>
           );
         })}
     </div>
   );
 };
 
-export default RightSection;
+export default RightSectionDua;

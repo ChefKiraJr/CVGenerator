@@ -15,7 +15,7 @@ import './tabel.css';
 import Pagination from './Pagination';
 import queryString from 'query-string';
 import { isEmpty } from 'lodash';
-import RightSectionDua from '../dataPreview/components/RightSectionDua';
+import RightSection from '../dataPreview/components/RightSection';
 import Details from '../dataPreview/components/Details';
 import LeftSection from '../dataPreview/components/LeftSection';
 import ProfileSummary from '../dataPreview/components/ProfileSummary';
@@ -36,7 +36,7 @@ const Tabel = () => {
     isEmpty(currentQuery._page) ? 0 : parseInt(currentQuery._page) - 1
   );
   const navigate = useNavigate();
-  const getData = async () => {
+  const fetchData = async () => {
     try {
       const currentQuery = queryString.parse(search);
       currentQuery._page = parseInt(currentQuery._page) || 1;
@@ -64,7 +64,7 @@ const Tabel = () => {
     fetchTotalPage();
   }, []);
   useEffect(() => {
-    getData();
+    fetchData();
   }, [search]);
   const handlePageClick = (event) => {
     setPage(event.selected);
@@ -81,7 +81,7 @@ const Tabel = () => {
       await axios.delete(
         `${process.env.REACT_APP_FAKE_API}/personalDetails/${id}`
       );
-      getData();
+      fetchData();
     } catch (err) {
       console.log(err);
     }
@@ -278,18 +278,18 @@ const Tabel = () => {
                           <ProfileSummary data={value} />
                         )}
                         {value.education && value.education.length > 0 && (
-                          <RightSectionDua data={value} title={'Education'} />
+                          <RightSection data={value} title={'Education'} />
                         )}
                         {value.workExperience &&
                           value.workExperience.length > 0 && (
-                            <RightSectionDua
+                            <RightSection
                               data={value}
                               title={'Working Experience'}
                             />
                           )}
                         {value.organizationExperience &&
                           value.organizationExperience.length > 0 && (
-                            <RightSectionDua
+                            <RightSection
                               data={value}
                               title={'Organization Experience'}
                             />
