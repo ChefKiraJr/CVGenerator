@@ -1,7 +1,10 @@
-.tabel__container {
-  width: 60%;
+.home-page__container {
   margin: auto;
   margin-top: 20px;
+  width: 60%;
+}
+
+.tabel__container {
   box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.05);
 }
 
@@ -31,4 +34,8 @@
   position: absolute;
   left: -1000px;
   z-index: -1;
+}
+
+.download-button {
+  margin-top: 20px;
 }

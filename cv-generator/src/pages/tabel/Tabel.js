@@ -31,11 +31,14 @@ const Tabel = () => {
   const [fullData, setFullData] = useState([]);
   const [printData, setPrintData] = useState([]);
   const [totalPage, setTotalPage] = useState();
+  const [selectedData, setSelectedData] = useState({});
+  const [isCheckedAll, setIsCheckedAll] = useState(false);
   const currentQuery = queryString.parse(search);
   const [page, setPage] = useState(
     isEmpty(currentQuery._page) ? 0 : parseInt(currentQuery._page) - 1
   );
   const navigate = useNavigate();
+  const toast = useToast();
   const fetchData = async () => {
     try {
       const currentQuery = queryString.parse(search);
@@ -60,12 +63,6 @@ const Tabel = () => {
       console.log(err);
     }
   };
-  useEffect(() => {
-    fetchTotalPage();
-  }, []);
-  useEffect(() => {
-    fetchData();
-  }, [search]);
   const handlePageClick = (event) => {
     setPage(event.selected);
     const currentQuery = queryString.parse(search);
@@ -86,9 +83,6 @@ const Tabel = () => {
       console.log(err);
     }
   };
-  // const [selectedRows, setSelectedRows] = useState(false);
-  const [selectedData, setSelectedData] = useState({});
-  const [isCheckedAll, setIsCheckedAll] = useState(false);
   const handleCheck = (value) => {
     let obj = { ...selectedData };
     let temp = obj[page] || [];
@@ -112,13 +106,6 @@ const Tabel = () => {
     }
     setSelectedData(obj);
   };
-  useEffect(() => {
-    if (selectedData[page]) {
-      setIsCheckedAll(selectedData[page].length === data.length);
-    } else {
-      setIsCheckedAll(false);
-    }
-  }, [page]);
   const objToArr = () => {
     let resArr = [];
     const values = Object.values(selectedData);
@@ -127,7 +114,6 @@ const Tabel = () => {
     }
     return resArr;
   };
-  // console.log(objToArr(), 'HEHO');
   const compareData = () => {
     const resArr = objToArr();
     let printArr = [];
@@ -138,10 +124,6 @@ const Tabel = () => {
     setPrintData(printArr);
     return printArr;
   };
-  useEffect(() => {
-    compareData();
-  }, [selectedData]);
-  const toast = useToast();
   const bulkActionHandler = async (datas) => {
     if (!isEmpty(datas)) {
       let pdf = new jsPDF('portrait', 'px', 'A4', 'false');
@@ -170,6 +152,22 @@ const Tabel = () => {
       });
     }
   };
+  useEffect(() => {
+    fetchTotalPage();
+  }, []);
+  useEffect(() => {
+    fetchData();
+  }, [search]);
+  useEffect(() => {
+    if (selectedData[page]) {
+      setIsCheckedAll(selectedData[page].length === data.length);
+    } else {
+      setIsCheckedAll(false);
+    }
+  }, [page]);
+  useEffect(() => {
+    compareData();
+  }, [selectedData]);
   const columns = [
     {
       name: (
@@ -217,7 +215,7 @@ const Tabel = () => {
     },
   ];
   return (
-    <>
+    <div className="home-page__container">
       <div className="tabel__container">
         <div className="tabel__title">
           <p>CV List</p>
@@ -242,7 +240,7 @@ const Tabel = () => {
         </div>
       </div>
       <div className="download-button">
-        <Button onClick={() => bulkActionHandler(printData)}>
+        <Button colorScheme="blue" onClick={() => bulkActionHandler(printData)}>
           Download as PDF
         </Button>
       </div>
@@ -302,7 +300,7 @@ const Tabel = () => {
             );
           })}
       </div>
-    </>
+    </div>
   );
 };
 
