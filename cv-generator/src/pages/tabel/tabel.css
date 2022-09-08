@@ -36,6 +36,36 @@
   z-index: -1;
 }
 
-.download-button {
-  margin-top: 20px;
+.table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 15px;
+}
+
+.skeleton-header {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.skeleton-content {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 15px;
+}
+
+.skeleton-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 15px;
 }

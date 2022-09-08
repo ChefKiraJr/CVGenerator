@@ -9,6 +9,7 @@ import {
   useToast,
   Checkbox,
   CheckboxGroup,
+  Skeleton,
 } from '@chakra-ui/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './tabel.css';
@@ -33,6 +34,7 @@ const Tabel = () => {
   const [totalPage, setTotalPage] = useState();
   const [selectedData, setSelectedData] = useState({});
   const [isCheckedAll, setIsCheckedAll] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const currentQuery = queryString.parse(search);
   const [page, setPage] = useState(
     isEmpty(currentQuery._page) ? 0 : parseInt(currentQuery._page) - 1
@@ -48,6 +50,9 @@ const Tabel = () => {
         `${process.env.REACT_APP_FAKE_API}/personalDetails?${queries}`
       );
       setData(data);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, '1000');
     } catch (err) {
       console.log(err);
     }
@@ -217,32 +222,53 @@ const Tabel = () => {
   return (
     <div className="home-page__container">
       <div className="tabel__container">
-        <div className="tabel__title">
-          <p>CV List</p>
-          <Button colorScheme="blue" onClick={() => navigate(`/add-data`)}>
-            Add Data
-          </Button>
-        </div>
-        <div className="tabel__content">
-          <CheckboxGroup
-            colorScheme="blue"
-            defaultValue={selectedData[page] ? selectedData[page] : []}
-            value={selectedData[page] ? selectedData[page] : []}
-            onChange={handleCheck}
-          >
-            <DataTable columns={columns} data={data} />
-          </CheckboxGroup>
-          <Pagination
-            page={page}
-            totalPage={totalPage}
-            handlePageClick={handlePageClick}
-          />
-        </div>
-      </div>
-      <div className="download-button">
-        <Button colorScheme="blue" onClick={() => bulkActionHandler(printData)}>
-          Download as PDF
-        </Button>
+        {isLoading ? (
+          <>
+            <div className="skeleton-header">
+              <Skeleton height="60px" width="128px"></Skeleton>
+              <Skeleton height="40px" width="100px"></Skeleton>
+            </div>
+            <div className="skeleton-content">
+              <Skeleton height="292px" width="1092px"></Skeleton>
+            </div>
+            <div className="skeleton-footer">
+              <Skeleton height="40px" width="159px"></Skeleton>
+              <Skeleton height="22px" width="259px"></Skeleton>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="tabel__title">
+              <p>CV List</p>
+              <Button colorScheme="blue" onClick={() => navigate(`/add-data`)}>
+                Add Data
+              </Button>
+            </div>
+            <div className="tabel__content">
+              <CheckboxGroup
+                colorScheme="blue"
+                defaultValue={selectedData[page] ? selectedData[page] : []}
+                value={selectedData[page] ? selectedData[page] : []}
+                onChange={handleCheck}
+              >
+                <DataTable columns={columns} data={data} />
+              </CheckboxGroup>
+            </div>
+            <div className="table-footer">
+              <Button
+                colorScheme="blue"
+                onClick={() => bulkActionHandler(printData)}
+              >
+                Download as PDF
+              </Button>
+              <Pagination
+                page={page}
+                totalPage={totalPage}
+                handlePageClick={handlePageClick}
+              />
+            </div>
+          </>
+        )}
       </div>
       <div className="print-layout">
         {printData &&
