@@ -45,7 +45,7 @@ const Tabel = () => {
     try {
       const currentQuery = queryString.parse(search);
       currentQuery._page = parseInt(currentQuery._page) || 1;
-      const queries = queryString.stringify({ ...currentQuery, _limit: 5 });
+      const queries = queryString.stringify({ ...currentQuery, _limit: 7 });
       const { data } = await axios.get(
         `${process.env.REACT_APP_FAKE_API}/personalDetails?${queries}`
       );
@@ -63,7 +63,7 @@ const Tabel = () => {
         `${process.env.REACT_APP_FAKE_API}/personalDetails`
       );
       setFullData(data);
-      setTotalPage(Math.ceil(data.length / 5));
+      setTotalPage(Math.ceil(data.length / 7));
     } catch (err) {
       console.log(err);
     }
@@ -229,7 +229,46 @@ const Tabel = () => {
               <Skeleton height="40px" width="100px"></Skeleton>
             </div>
             <div className="skeleton-content">
-              <Skeleton height="292px" width="1092px"></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
+              <Skeleton
+                className="skeleton-content__text"
+                height="20px"
+                width="1283px"
+              ></Skeleton>
             </div>
             <div className="skeleton-footer">
               <Skeleton height="40px" width="159px"></Skeleton>
