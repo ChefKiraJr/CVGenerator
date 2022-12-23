@@ -19,6 +19,9 @@ const DataPreview = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`
       );
+      // const { data } = await axios.get(
+      //   `http://localhost:3004/personalDetails/${anak}`
+      // );
       setData(data);
     } catch (err) {
       console.log(err);

@@ -38,6 +38,9 @@ const AddData = ({ isEdit }) => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`
       );
+      // const { data } = await axios.get(
+      //   `http://localhost:3004/personalDetails/${anak}`
+      // );
       setData(data);
     } catch (err) {
       console.log(err);
@@ -67,11 +70,16 @@ const AddData = ({ isEdit }) => {
             `${process.env.REACT_APP_FAKE_API}/personalDetails/${anak}`,
             putData
           );
+          // await axios.put(
+          //   `http://localhost:3004/personalDetails/${anak}`,
+          //   putData
+          // );
         } else {
           await axios.post(
             `${process.env.REACT_APP_FAKE_API}/personalDetails`,
             postData
           );
+          // await axios.post(`http://localhost:3004/personalDetails`, postData);
         }
         toast({
           title: 'Submit data success',

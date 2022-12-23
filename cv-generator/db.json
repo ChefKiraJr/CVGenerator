@@ -289,57 +289,6 @@
     },
     {
       "jobTitle": "Data Analyst",
-      "firstName": "Kiper",
-      "lastName": "Botak",
-      "email": "aldin.binandika@gmail.com",
-      "phone": "081247426450",
-      "country": "Indonesia",
-      "city": "Tangerang Selatan",
-      "address": "Jl. Raya Cirendeu No.46, Pisangan, Kecamatan Ciputat Timur",
-      "postalCode": "15419",
-      "birthPlace": "Jakarta",
-      "birthDate": "25 Mei 1998",
-      "profileSummary": "MBA (university topper and gold medallist) with seven years of experience in budgeting, forecasting and financial modelling. Promoted from quality assurance manager to a business analyst within two years. Used forecasting model with variance analysis to recommend changes in the production plan and sale of three products to reduce overheads by 43%. Achieved the certificate of merit for outstanding performance.",
-      "education": [
-        {
-          "school": "Universitas Indonesia",
-          "degree": "Civil Engineer",
-          "startDate": "2016",
-          "endDate": "2020",
-          "city": "Jakarta",
-          "description": "GPA: 4.00/4.00"
-        }
-      ],
-      "skills": [
-        {
-          "skill": "Communication",
-          "level": "Experienced"
-        },
-        {
-          "skill": "Teamwork",
-          "level": "Expert"
-        },
-        {
-          "skill": "AutoCAD",
-          "level": "Experienced"
-        }
-      ],
-      "workExperience": [],
-      "organizationExperience": [],
-      "languages": [
-        {
-          "language": "Indonesian",
-          "level": "Native Speaker"
-        },
-        {
-          "language": "English",
-          "level": "Very Good Command"
-        }
-      ],
-      "id": 2
-    },
-    {
-      "jobTitle": "Data Analyst",
       "firstName": "Ferdi",
       "lastName": "Rulli",
       "email": "aldin.binandika@gmail.com",
@@ -694,57 +643,6 @@
         }
       ],
       "id": 9
-    },
-    {
-      "jobTitle": "Data Analyst",
-      "firstName": "Sukirman",
-      "lastName": "Sukijan",
-      "email": "aldin.binandika@gmail.com",
-      "phone": "081247426450",
-      "country": "Indonesia",
-      "city": "Tangerang Selatan",
-      "address": "Jl. Raya Cirendeu No.46, Pisangan, Kecamatan Ciputat Timur",
-      "postalCode": "15419",
-      "birthPlace": "Jakarta",
-      "birthDate": "25 Mei 1998",
-      "profileSummary": "MBA (university topper and gold medallist) with seven years of experience in budgeting, forecasting and financial modelling. Promoted from quality assurance manager to a business analyst within two years. Used forecasting model with variance analysis to recommend changes in the production plan and sale of three products to reduce overheads by 43%. Achieved the certificate of merit for outstanding performance.",
-      "education": [
-        {
-          "school": "Universitas Indonesia",
-          "degree": "Civil Engineer",
-          "startDate": "2016",
-          "endDate": "2020",
-          "city": "Jakarta",
-          "description": "GPA: 4.00/4.00"
-        }
-      ],
-      "skills": [
-        {
-          "skill": "Communication",
-          "level": "Experienced"
-        },
-        {
-          "skill": "Teamwork",
-          "level": "Expert"
-        },
-        {
-          "skill": "AutoCAD",
-          "level": "Experienced"
-        }
-      ],
-      "workExperience": [],
-      "organizationExperience": [],
-      "languages": [
-        {
-          "language": "Indonesian",
-          "level": "Native Speaker"
-        },
-        {
-          "language": "English",
-          "level": "Very Good Command"
-        }
-      ],
-      "id": 10
     }
   ]
 }

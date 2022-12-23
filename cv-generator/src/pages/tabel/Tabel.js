@@ -49,6 +49,9 @@ const Tabel = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_FAKE_API}/personalDetails?${queries}`
       );
+      // const { data } = await axios.get(
+      //   `http://localhost:3004/personalDetails?${queries}`
+      // );
       setData(data);
       setTimeout(() => {
         setIsLoading(false);
@@ -62,7 +65,8 @@ const Tabel = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_FAKE_API}/personalDetails`
       );
-      setFullData(data);
+      // const { data } = await axios.get(`http://localhost:3004/personalDetails`);
+      // setFullData(data);
       setTotalPage(Math.ceil(data.length / 7));
     } catch (err) {
       console.log(err);
@@ -83,6 +87,7 @@ const Tabel = () => {
       await axios.delete(
         `${process.env.REACT_APP_FAKE_API}/personalDetails/${id}`
       );
+      // await axios.delete(`http://localhost:3004/personalDetails/${id}`);
       fetchData();
     } catch (err) {
       console.log(err);
