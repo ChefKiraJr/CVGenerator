@@ -83,7 +83,9 @@ const DataPreview = () => {
             </div>
           </div>
           <div className="download-button">
-            <Button onClick={printDocument}>Download as PDF</Button>
+            <Button onClick={printDocument} colorScheme="blue">
+              Download as PDF
+            </Button>
           </div>
         </>
       )}

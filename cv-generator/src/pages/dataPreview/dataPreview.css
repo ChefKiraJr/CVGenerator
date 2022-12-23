@@ -72,3 +72,11 @@
 .data-preview__section-content {
   margin-bottom: 10px;
 }
+
+.download-button {
+  width: 1000px;
+  margin: auto;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  padding-top: 10px;
+}
