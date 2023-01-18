@@ -34,3 +34,9 @@
   margin-right: 12px;
   margin-left: 4px;
 }
+
+@media (max-width: 340px) {
+  .pagination__item {
+    margin: 0 5px;
+  }
+}

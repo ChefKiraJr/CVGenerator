@@ -230,54 +230,54 @@ const Tabel = () => {
         {isLoading ? (
           <>
             <div className="skeleton-header">
-              <Skeleton height="60px" width="128px"></Skeleton>
+              <Skeleton height="60px" width="125px"></Skeleton>
               <Skeleton height="40px" width="100px"></Skeleton>
             </div>
             <div className="skeleton-content">
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
               <Skeleton
                 className="skeleton-content__text"
                 height="20px"
-                width="1283px"
+                maxWidth="100%"
               ></Skeleton>
             </div>
             <div className="skeleton-footer">
               <Skeleton height="40px" width="159px"></Skeleton>
-              <Skeleton height="22px" width="259px"></Skeleton>
+              <Skeleton height="22px" width="210px"></Skeleton>
             </div>
           </>
         ) : (
