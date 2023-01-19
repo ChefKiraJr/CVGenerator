@@ -66,7 +66,7 @@ const Tabel = () => {
         `${process.env.REACT_APP_FAKE_API}/personalDetails`
       );
       // const { data } = await axios.get(`http://localhost:3004/personalDetails`);
-      // setFullData(data);
+      setFullData(data);
       setTotalPage(Math.ceil(data.length / 7));
     } catch (err) {
       console.log(err);
